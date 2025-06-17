@@ -10,8 +10,8 @@ namespace RoomBookingApp.Processors
     public class RoomBookingRequestProcessor
     {
 
-        public RoomBookingRequestProcessor()
-        {            
+        public RoomBookingRequestProcessor(DataServices.IRoomBookingService @object)
+        {
         }
 
         public RoomBookingResult BookRoom(RoomBookingRequest request)

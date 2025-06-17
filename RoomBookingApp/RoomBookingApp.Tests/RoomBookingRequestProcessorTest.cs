@@ -1,4 +1,7 @@
-﻿using RoomBookingApp.Models;
+﻿using Moq;
+using RoomBookingApp.DataServices;
+using RoomBookingApp.Domain;
+using RoomBookingApp.Models;
 using RoomBookingApp.Processors;
 using System;
 using System.Collections.Generic;
@@ -10,44 +13,65 @@ namespace RoomBookingApp.Tests
 {
     public class RoomBookingRequestProcessorTest
     {
-        RoomBookingRequestProcessor _processor;
+        private RoomBookingRequestProcessor _processor;
+        private Mock<IRoomBookingService> _roomBookingServiceMock;
+        private RoomBookingRequest _request;
 
         public RoomBookingRequestProcessorTest()
         {
             //Arrange
-            _processor = new RoomBookingRequestProcessor();
+            _roomBookingServiceMock = new Mock<IRoomBookingService>();
+            _processor = new RoomBookingRequestProcessor(_roomBookingServiceMock.Object);
+
+            _request = new RoomBookingRequest()
+            {
+                FullName = "Name Test",
+                Email = "test@email.com",
+                Date = new DateTime(2025, 6, 17)
+            };
         }
 
 
         [Fact]
         public void Should_Return_Room_Booking_Response_With_Request_Values()
         {
-            //Arrange
-            var request = new RoomBookingRequest()
-            {
-                FullName = "Name Test",
-                Email = "test@email.com",
-                Date = new DateTime(2025, 6, 17)
-            };
-
-
             //Act
-            RoomBookingResult result = _processor.BookRoom(request);
+            RoomBookingResult result = _processor.BookRoom(_request);
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(request.FullName, result.FullName);
-            Assert.Equal(request.Email, result.Email);
-            Assert.Equal(request.Date, result.Date);
+            Assert.Equal(_request.FullName, result.FullName);
+            Assert.Equal(_request.Email, result.Email);
+            Assert.Equal(_request.Date, result.Date);
         }
 
 
         [Fact]
         public void Should_Throw_Exception_For_Null_Request()
         {
-            var processor = new RoomBookingRequestProcessor();
             var exception = Assert.Throws<ArgumentNullException>(() => _processor.BookRoom(null));
             Assert.Equal(exception.ParamName, "request");
         }
+
+        [Fact]
+        public void Should_Save_Room_BookiNg_Request()
+        {
+
+            RoomBooking savedBooking = null;
+
+            _roomBookingServiceMock.Setup(x => x.Save(It.IsAny<RoomBooking>()))
+                .Callback<RoomBooking>(booking => { savedBooking = booking; });
+
+            _processor.BookRoom(_request);
+
+            _roomBookingServiceMock.Verify(x => x.Save(It.IsAny<RoomBooking>()), Times.Once);
+
+            Assert.NotNull(savedBooking);
+            Assert.Equal(_request.FullName, savedBooking.FullName);
+            Assert.Equal(_request.Email, savedBooking.Email);
+            Assert.Equal(_request.Date, savedBooking.Date);
+        }
+
+
     }
 }
