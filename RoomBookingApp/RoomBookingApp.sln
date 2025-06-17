@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36202.13 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBookingApp.Tests", "RoomBookingApp.Tests\RoomBookingApp.Tests.csproj", "{225AB78D-4AA2-4194-83C5-04A310B0A648}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomBookingApp", "RoomBookingApp\RoomBookingApp.csproj", "{64436395-AA46-44F1-AE65-8674D1CD0B43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{225AB78D-4AA2-4194-83C5-04A310B0A648}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{225AB78D-4AA2-4194-83C5-04A310B0A648}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{225AB78D-4AA2-4194-83C5-04A310B0A648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64436395-AA46-44F1-AE65-8674D1CD0B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64436395-AA46-44F1-AE65-8674D1CD0B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64436395-AA46-44F1-AE65-8674D1CD0B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64436395-AA46-44F1-AE65-8674D1CD0B43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
