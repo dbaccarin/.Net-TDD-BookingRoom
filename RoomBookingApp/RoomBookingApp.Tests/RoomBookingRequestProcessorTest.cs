@@ -40,6 +40,7 @@ namespace RoomBookingApp.Tests
         {
             var processor = new RoomBookingRequestProcessor();
             var exception = Assert.Throws<ArgumentNullException>(() => processor.BookRoom(null));
+            Assert.Equal(exception.ParamName, "request");
         }
     }
 }
