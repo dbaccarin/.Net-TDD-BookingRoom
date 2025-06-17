@@ -24,18 +24,20 @@ namespace RoomBookingApp.Processors
             if (request is null)
                 throw new ArgumentNullException(nameof(request));
 
-            _roomBookingService.Save(new RoomBooking() {
-                FullName = request.FullName,
-                Date = request.Date,
-                Email = request.Email
-            });
+            _roomBookingService.Save(CreateRoomBookingObject<RoomBooking>(request));
 
-            return new RoomBookingResult
+            return CreateRoomBookingObject<RoomBookingResult>(request);
+        }
+
+        private static T CreateRoomBookingObject<T>(RoomBookingRequest request) where T : RoomBookingBase, new()
+        {
+            return new T
             {
                 FullName = request.FullName,
                 Date = request.Date,
                 Email = request.Email
             };
         }
+
     }
 }

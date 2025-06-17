@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace RoomBookingApp.Models
 {
-    public class RoomBookingResult
+    public class RoomBookingResult : RoomBookingBase
     {
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public DateTime Date { get; set; }
+
     }
 }
