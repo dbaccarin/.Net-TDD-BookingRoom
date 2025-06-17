@@ -1,4 +1,6 @@
-﻿using RoomBookingApp.Models;
+﻿using RoomBookingApp.DataServices;
+using RoomBookingApp.Domain;
+using RoomBookingApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,11 @@ namespace RoomBookingApp.Processors
 {
     public class RoomBookingRequestProcessor
     {
+        private readonly IRoomBookingService _roomBookingService;
 
-        public RoomBookingRequestProcessor(DataServices.IRoomBookingService @object)
+        public RoomBookingRequestProcessor(IRoomBookingService roomBookingService)
         {
+            _roomBookingService = roomBookingService;
         }
 
         public RoomBookingResult BookRoom(RoomBookingRequest request)
@@ -19,6 +23,12 @@ namespace RoomBookingApp.Processors
 
             if (request is null)
                 throw new ArgumentNullException(nameof(request));
+
+            _roomBookingService.Save(new RoomBooking() {
+                FullName = request.FullName,
+                Date = request.Date,
+                Email = request.Email
+            });
 
             return new RoomBookingResult
             {
