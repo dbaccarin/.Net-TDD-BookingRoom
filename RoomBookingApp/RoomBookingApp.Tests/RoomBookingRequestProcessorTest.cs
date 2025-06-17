@@ -33,5 +33,13 @@ namespace RoomBookingApp.Tests
             Assert.Equal(request.Email, result.Email);
             Assert.Equal(request.Date, result.Date);
         }
+
+
+        [Fact]
+        public void Should_Throw_Exception_For_Null_Request()
+        {
+            var processor = new RoomBookingRequestProcessor();
+            var exception = Assert.Throws<ArgumentNullException>(() => processor.BookRoom(null));
+        }
     }
 }
