@@ -15,7 +15,12 @@ namespace RoomBookingApp.Tests
 
         public RoomBookingResult BookRoom(RoomBookingRequest request)
         {
-            throw new NotImplementedException();
+            return new RoomBookingResult
+            {
+                FullName = request.FullName,
+                Date = request.Date,
+                Email = request.Email
+            };
         }
     }
 }
