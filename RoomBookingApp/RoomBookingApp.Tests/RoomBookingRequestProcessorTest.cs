@@ -50,7 +50,7 @@ namespace RoomBookingApp.Tests
         public void Should_Throw_Exception_For_Null_Request()
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _processor.BookRoom(null));
-            Assert.Equal(exception.ParamName, "request");
+            Assert.Equal("request", exception.ParamName);
         }
 
         [Fact]
