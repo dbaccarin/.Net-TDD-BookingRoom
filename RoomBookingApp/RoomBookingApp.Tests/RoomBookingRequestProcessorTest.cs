@@ -1,6 +1,7 @@
 ﻿using Moq;
 using RoomBookingApp.DataServices;
 using RoomBookingApp.Domain;
+using RoomBookingApp.Enums;
 using RoomBookingApp.Models;
 using RoomBookingApp.Processors;
 using System;
@@ -28,7 +29,7 @@ namespace RoomBookingApp.Tests
                 Date = new DateTime(2025, 6, 17)
             };
 
-            _availableRooms = new List<Room>() { new Room() { Id = 1} };
+            _availableRooms = new List<Room>() { new Room() { Id = 1 } };
 
             _roomBookingServiceMock = new Mock<IRoomBookingService>();
             _roomBookingServiceMock.Setup(x => x.GetAvailableRooms(_request.Date)).Returns(_availableRooms);
@@ -89,6 +90,19 @@ namespace RoomBookingApp.Tests
             _roomBookingServiceMock.Verify(x => x.Save(It.IsAny<RoomBooking>()), Times.Never);
         }
 
+        [Theory]
+        [InlineData(BookingResultFlag.Failure, false)]
+        [InlineData(BookingResultFlag.Succcess, true)]
+        public void Should_Return_Result_Flag_In_Result(BookingResultFlag bookingResultFlag, bool isAvailable)
+        {
+            if (!isAvailable)
+                _availableRooms.Clear();
+
+            var result = _processor.BookRoom(_request);
+
+            Assert.Equal(bookingResultFlag, result.Flag);
+
+        }
 
     }
 }

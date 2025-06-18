@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomBookingApp.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace RoomBookingApp.Models
 {
     public class RoomBookingResult : RoomBookingBase
     {
-
+        public BookingResultFlag Flag { get; set; }
     }
 }
