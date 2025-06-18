@@ -11,5 +11,7 @@ namespace RoomBookingApp.DataServices
     {
         void Save(RoomBooking roomBooking);
 
+        IEnumerable<Room> GetAvailableRooms(DateTime date);
+
     }
 }
