@@ -101,7 +101,6 @@ namespace RoomBookingApp.Tests
             var result = _processor.BookRoom(_request);
 
             Assert.Equal(bookingResultFlag, result.Flag);
-
         }
 
     }

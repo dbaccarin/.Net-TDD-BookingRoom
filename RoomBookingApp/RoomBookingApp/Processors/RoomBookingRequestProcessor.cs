@@ -1,5 +1,6 @@
 ﻿using RoomBookingApp.DataServices;
 using RoomBookingApp.Domain;
+using RoomBookingApp.Enums;
 using RoomBookingApp.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace RoomBookingApp.Processors
                 throw new ArgumentNullException(nameof(request));
 
             var availableRooms = _roomBookingService.GetAvailableRooms(request.Date);
+            var result = CreateRoomBookingObject<RoomBookingResult>(request);
 
             if (availableRooms.Any())
             {
@@ -34,9 +36,14 @@ namespace RoomBookingApp.Processors
 
                 _roomBookingService.Save(roomBooking);
 
+                result.Flag = BookingResultFlag.Succcess;
+            }
+            else
+            {
+                result.Flag = BookingResultFlag.Failure;
             }
 
-            return CreateRoomBookingObject<RoomBookingResult>(request);
+            return result;
         }
 
         private static T CreateRoomBookingObject<T>(RoomBookingRequest request) where T : RoomBookingBase, new()
