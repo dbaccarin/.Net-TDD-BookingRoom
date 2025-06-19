@@ -10,6 +10,13 @@ namespace RoomBookingApp.Persistence.Repositories
 {
     public class RoomBookingService : IRoomBookingService
     {
+        private readonly RoomBookingAppDbContext contex;
+
+        public RoomBookingService(RoomBookingAppDbContext contex)
+        {
+            this.contex = contex;
+        }
+
         public IEnumerable<Room> GetAvailableRooms(DateTime date)
         {
             throw new NotImplementedException();
