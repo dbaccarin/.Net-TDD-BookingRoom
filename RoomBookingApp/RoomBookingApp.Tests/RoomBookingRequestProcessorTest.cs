@@ -1,16 +1,11 @@
 ﻿using Moq;
-using RoomBookingApp.DataServices;
+using RoomBookingApp.Core.DataServices;
+using RoomBookingApp.Core.Enums;
+using RoomBookingApp.Core.Models;
+using RoomBookingApp.Core.Processors;
 using RoomBookingApp.Domain;
-using RoomBookingApp.Enums;
-using RoomBookingApp.Models;
-using RoomBookingApp.Processors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RoomBookingApp.Tests
+namespace RoomBookingApp.Core.Tests
 {
     public class RoomBookingRequestProcessorTest
     {
@@ -110,7 +105,7 @@ namespace RoomBookingApp.Tests
         public void Should_Return_RoomBookingId_In_Result(int? roombookingId, bool isAvailable)
         {
             if (!isAvailable)
-            { 
+            {
                 _availableRooms.Clear();
             }
             else

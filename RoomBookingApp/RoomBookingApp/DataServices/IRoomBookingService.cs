@@ -1,11 +1,6 @@
 ﻿using RoomBookingApp.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RoomBookingApp.DataServices
+namespace RoomBookingApp.Core.DataServices
 {
     public interface IRoomBookingService
     {

@@ -1,11 +1,7 @@
-﻿using RoomBookingApp.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RoomBookingApp.Core.Enums;
+using RoomBookingApp.Domain.BaseModels;
 
-namespace RoomBookingApp.Models
+namespace RoomBookingApp.Core.Models
 {
     public class RoomBookingResult : RoomBookingBase
     {
