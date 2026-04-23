@@ -20,8 +20,8 @@ namespace RoomBookingApp.Persistence.Tests
             context.Rooms.Add(new Room { Id = 2, Name = "Room 2" });
             context.Rooms.Add(new Room { Id = 3, Name = "Room 3" });
 
-            context.RoomBookings.Add(new RoomBooking { Id = 1, Date = date });
-            context.RoomBookings.Add(new RoomBooking { Id = 2, Date = date.AddDays(-1) });
+            context.RoomBookings.Add(new RoomBooking { RoomId = 1, Date = date });
+            context.RoomBookings.Add(new RoomBooking { RoomId = 2, Date = date.AddDays(-1) });
 
             context.SaveChanges();
 
@@ -32,9 +32,9 @@ namespace RoomBookingApp.Persistence.Tests
 
             //Assert
             Assert.Equal(2, availableRooms.Count());
-            Assert.DoesNotContain(availableRooms, q => q.Id == 1);
             Assert.Contains(availableRooms, q => q.Id == 2);
             Assert.Contains(availableRooms, q => q.Id == 3);
+            Assert.DoesNotContain(availableRooms, q => q.Id == 1);
         }
     }
 }

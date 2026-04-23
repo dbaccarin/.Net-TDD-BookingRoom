@@ -32,7 +32,7 @@ namespace RoomBookingApp.Core.Processors
 
                 _roomBookingService.Save(roomBooking);
 
-                result.RoomBookingId = roomBooking.RoomId;
+                result.RoomBookingId = roomBooking.Id;
                 result.Flag = BookingResultFlag.Succcess;
             }
             else
